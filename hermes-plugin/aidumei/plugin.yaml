@@ -1,0 +1,8 @@
+name: aidumei
+version: 20.4.0
+description: "aiduMEI — self-hosted multi-tier AI wisdom engine (hybrid vector + FTS5 recall, Ebbinghaus decay, core memory) over a local HTTP service."
+requires_env: []
+hooks:
+  - on_pre_compress
+  - on_memory_write
+  - on_session_end

@@ -13,14 +13,51 @@
 const API = {
   base: '/api',
 
+  /* 获取当前前端选中的域；'all' 代表查看全部（不加租户过滤） */
+  getActiveDomain() {
+    try {
+      const v = localStorage.getItem('aidumei_active_domain');
+      if (v) return v;
+    } catch (e) {}
+    return 'hermes:default'; // 默认优先选中 hermes
+  },
+
+  setActiveDomain(domainStr) {
+    try {
+      localStorage.setItem('aidumei_active_domain', domainStr);
+    } catch (e) {}
+  },
+
+  parseDomain(domainStr) {
+    const s = domainStr || this.getActiveDomain();
+    if (!s || s === 'all') return null;
+    const parts = s.split(':');
+    return {
+      user_id: parts[0] || 'default',
+      bank_id: parts[1] || 'default',
+    };
+  },
+
   /* v19.4.1 P0-1: every request carries the HttpOnly session cookie issued by
      /api/login. Without credentials the backend's unified gate returns 401 —
      previously the console sent no credentials at all, so enabling the gate
      broke every panel. */
   async get(path, params) {
     let url = this.base + path;
-    if (params) {
-      const q = new URLSearchParams(params).toString();
+    const p = Object.assign({}, params);
+
+    // 自动为数据面请求附加选中的域过滤
+    const isSystemPath = /^\/(login|config|domains|health|livez|readyz)/.test(path);
+    if (!isSystemPath) {
+      const dom = this.parseDomain();
+      if (dom) {
+        if (p.user_id === undefined && dom.user_id) p.user_id = dom.user_id;
+        if (p.bank_id === undefined && dom.bank_id) p.bank_id = dom.bank_id;
+      }
+    }
+
+    if (Object.keys(p).length > 0) {
+      const q = new URLSearchParams(p).toString();
       if (q) url += '?' + q;
     }
     const r = await fetch(url, {
@@ -36,18 +73,30 @@ const API = {
   },
 
   async post(path, payload) {
+    const body = Object.assign({}, payload);
+
+    // 自动为数据面 POST 请求附加选中的域过滤
+    const isSystemPath = /^\/(login|config|domains|health|livez|readyz)/.test(path);
+    if (!isSystemPath) {
+      const dom = this.parseDomain();
+      if (dom) {
+        if (body.user_id === undefined && dom.user_id) body.user_id = dom.user_id;
+        if (body.bank_id === undefined && dom.bank_id) body.bank_id = dom.bank_id;
+      }
+    }
+
     const r = await fetch(this.base + path, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       credentials: 'same-origin',
-      body: JSON.stringify(payload || {}),
+      body: JSON.stringify(body),
     });
-    const body = await r.json().catch(() => ({}));
+    const resBody = await r.json().catch(() => ({}));
     if (!r.ok) {
       handleAuthFailure(r.status);
-      throw new ApiError(r.status, body, path);
+      throw new ApiError(r.status, resBody, path);
     }
-    return body;
+    return resBody;
   },
 };
 
@@ -105,7 +154,8 @@ function readRecord(raw) {
     factId: meta.fact_id != null ? meta.fact_id : null,
     createdAt: raw.created_at || '',
     updatedAt: raw.updated_at || '',
-    userId: raw.user_id || '',
+    userId: raw.user_id || meta.user_id || '',
+    bankId: raw.bank_id || meta.bank_id || '',
     score: raw.score != null ? raw.score : null,
     rerank: raw._rerank_score != null ? raw._rerank_score : null,
     mediaUrl: meta.media_url || null,
@@ -121,6 +171,8 @@ function readFact(raw) {
     value: raw.fact_value || '',
     summary: raw.summary || '',
     source: raw.source || '',
+    userId: raw.user_id || (raw.metadata && raw.metadata.user_id) || '',
+    bankId: raw.bank_id || (raw.metadata && raw.metadata.bank_id) || '',
     confidence: raw.confidence != null ? raw.confidence : null,
     trust: raw.trust_score != null ? raw.trust_score : null,
     helpful: raw.helpful_count || 0,

@@ -576,6 +576,12 @@ async function deleteMemory(id, card) {
 
 function recordRow(r) {
   const bits = [];
+  if (r.userId) {
+    let icon = '⚙️';
+    if (r.userId === 'hermes') icon = '🐎';
+    else if (r.userId === 'openclaw') icon = '🦞';
+    bits.push('<span class="chip-user" style="font-weight:700;color:var(--blue);">' + icon + ' ' + esc(r.userId) + '</span>');
+  }
   if (r.category) bits.push('<span class="cat">' + esc(r.category) + '</span>');
   if (r.source) bits.push('<span class="src hexcn">' + esc(r.source) + '</span>');
   if (r.rerank != null) bits.push('重排 ' + r.rerank.toFixed(3));
@@ -596,6 +602,12 @@ function recordRow(r) {
 
 function factRow(f) {
   const bits = [];
+  if (f.userId) {
+    let icon = '⚙️';
+    if (f.userId === 'hermes') icon = '🐎';
+    else if (f.userId === 'openclaw') icon = '🦞';
+    bits.push('<span class="chip-user" style="font-weight:700;color:var(--blue);">' + icon + ' ' + esc(f.userId) + '</span>');
+  }
   if (f.category) bits.push('<span class="cat">' + esc(f.category) + '</span>');
   if (f.source) bits.push('<span class="src hexcn">' + esc(f.source) + '</span>');
   if (f.trust != null) bits.push('信任 ' + f.trust.toFixed(2));

@@ -307,7 +307,7 @@ def _load_rerank_config() -> dict:
             cfg["model"] = rc.get("model", "")
             cfg["base_url"] = rc.get("openai_base_url", "")
             api_key = rc.get("api_key", "")
-            if api_key == "__SF_KEY__" or not api_key:
+            if api_key in ("__SF_KEY__", "__RERANKER_KEY__") or not api_key:
                 kp = os.path.join(BASE_DIR, ".sf_key")
                 if os.path.exists(kp):
                     with open(kp) as fk:
@@ -510,7 +510,7 @@ def _resolve_api_keys(cfg: dict) -> dict:
             rerank_cfg["config"]["api_key"] = env_rerank
         else:
             rk = rerank_cfg["config"].get("api_key", "")
-            if rk == "__SF_KEY__" or not rk:
+            if rk in ("__SF_KEY__", "__RERANKER_KEY__") or not rk:
                 kp = os.path.join(base, ".sf_key")
                 if os.path.exists(kp):
                     with open(kp) as f:

@@ -206,6 +206,22 @@ def _build_config_view() -> dict:
 
 
 def register_config_routes(app: FastAPI) -> None:
+    @app.get("/domains")
+    def list_all_domains() -> dict:
+        """获取所有已注册的域(user_id, bank_id)供控制台切换"""
+        from ducky.utils import get_facts_conn
+        conn = get_facts_conn()
+        try:
+            rows = conn.execute(
+                "SELECT user_id, bank_id, display_name, status FROM memory_banks ORDER BY user_id, bank_id"
+            ).fetchall()
+            return {
+                "status": "ok",
+                "domains": [dict(r) for r in rows],
+            }
+        finally:
+            conn.close()
+
     @app.get("/config")
     def get_config() -> dict:
         return _build_config_view()
