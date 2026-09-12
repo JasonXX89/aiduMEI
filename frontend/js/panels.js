@@ -1293,20 +1293,61 @@ async function renderSettings(body) {
     '</div>' +
 
     // ---- federation ----
-    '<div class="sec">' + secHead('联邦成员', 'FEDERATION', agentList.length + ' 个 Agent') +
-      (agentList.length
-        ? '<div class="recs">' + agentList.map(function (a) {
-            const on = a.available && !a.stale;
-            return '<div class="rec"><div class="rtext"><b>' + esc(a.display_name || a.agent_id) + '</b>' +
-              (a.description ? ' — ' + esc(a.description) : '') + '</div>' +
-              '<div class="rmeta">' +
-                '<span class="cat">' + (on ? '在线 Online' : '静默 Idle') + '</span>' +
-                '<span class="dot-sep">·</span>' + fmtInt(a.fact_count || 0) + ' 条事实 / facts' +
-                '<span class="dot-sep">·</span>心跳 ' + fmtWhen(a.last_seen_at) +
-                '<span class="dot-sep">·</span>profile ' + esc(a.profile || '—') +
-              '</div></div>';
-          }).join('') + '</div>'
-        : '<div class="hint">读不到联邦成员 / No federation agents.</div>') +
+    '<div class="sec">' + secHead('联邦成员', 'FEDERATION', agentList.length + ' 个 Agent · 按域分类') +
+      (function () {
+        if (!agentList.length) return '<div class="hint">读不到联邦成员 / No federation agents.</div>';
+
+        const currentDom = API.getActiveDomain();
+        const currentUserId = currentDom && currentDom !== 'all' ? currentDom.split(':')[0] : null;
+
+        const groupOrder = ['hermes', 'openclaw', 'default'];
+        const groups = {};
+        agentList.forEach(function (a) {
+          const prof = a.profile || 'default';
+          if (!groups[prof]) groups[prof] = [];
+          groups[prof].push(a);
+        });
+
+        const groupKeys = Object.keys(groups).sort(function (x, y) {
+          const ix = groupOrder.indexOf(x);
+          const iy = groupOrder.indexOf(y);
+          if (ix !== -1 && iy !== -1) return ix - iy;
+          if (ix !== -1) return -1;
+          if (iy !== -1) return 1;
+          return x.localeCompare(y);
+        });
+
+        return '<div class="fed-groups-wrap">' + groupKeys.map(function (prof) {
+          const list = groups[prof];
+          const isCurrent = currentUserId === prof;
+          let icon = '⚙️';
+          let nameCn = prof;
+          if (prof === 'hermes') { icon = '🐎'; nameCn = 'Hermes 域 (Emma / Lisa)'; }
+          else if (prof === 'openclaw') { icon = '🦞'; nameCn = 'OpenClaw 域 (小希等六人组)'; }
+          else if (prof === 'default') { icon = '📌'; nameCn = '系统默认域 (Local/Default)'; }
+
+          return '<div class="fed-group' + (isCurrent ? ' fed-group--active' : '') + '">' +
+            '<div class="fed-group-header">' +
+              '<span class="fed-group-title">' + icon + ' ' + esc(nameCn) + '</span>' +
+              '<span class="fed-group-meta">' +
+                '<span class="fed-group-count">' + list.length + ' 个成员</span>' +
+                (isCurrent ? '<span class="fed-curr-badge">当前域 Selected</span>' : '') +
+              '</span>' +
+            '</div>' +
+            '<div class="recs">' + list.map(function (a) {
+              const on = a.available && !a.stale;
+              return '<div class="rec"><div class="rtext"><b>' + esc(a.display_name || a.agent_id) + '</b>' +
+                (a.description ? ' — ' + esc(a.description) : '') + '</div>' +
+                '<div class="rmeta">' +
+                  '<span class="cat">' + (on ? '在线 Online' : '静默 Idle') + '</span>' +
+                  '<span class="dot-sep">·</span>' + fmtInt(a.fact_count || 0) + ' 条事实 / facts' +
+                  '<span class="dot-sep">·</span>心跳 ' + fmtWhen(a.last_seen_at) +
+                  '<span class="dot-sep">·</span>id ' + esc(a.agent_id) +
+                '</div></div>';
+            }).join('') + '</div>' +
+          '</div>';
+        }).join('') + '</div>';
+      })() +
     '</div>' +
 
     // ---- security / change password ----

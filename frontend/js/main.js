@@ -142,16 +142,19 @@ async function openPanel(key) {
 
   // title: EN (gray) then CN (blue)
   panelEn.textContent = def.en;
-  const activeDom = API.getActiveDomain();
+  // 设定面板(settings)与成真面板(evolve)属于系统级全局运维监控，不绑定单个域；数据面板(vault/pulse/map/recall)展示当前域
   let domSuffix = '';
-  if (activeDom && activeDom !== 'all') {
-    const domUser = activeDom.split(':')[0];
-    let icon = '⚙️';
-    if (domUser === 'hermes') icon = '🐎';
-    else if (domUser === 'openclaw') icon = '🦞';
-    domSuffix = ' · ' + icon + ' ' + domUser;
-  } else if (activeDom === 'all') {
-    domSuffix = ' · 🌐 全部';
+  if (key !== 'settings' && key !== 'evolve') {
+    const activeDom = API.getActiveDomain();
+    if (activeDom && activeDom !== 'all') {
+      const domUser = activeDom.split(':')[0];
+      let icon = '⚙️';
+      if (domUser === 'hermes') icon = '🐎';
+      else if (domUser === 'openclaw') icon = '🦞';
+      domSuffix = ' · ' + icon + ' ' + domUser;
+    } else if (activeDom === 'all') {
+      domSuffix = ' · 🌐 全部';
+    }
   }
   panelTitle.textContent = def.cn + domSuffix;
 

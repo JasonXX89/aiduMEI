@@ -46,8 +46,8 @@ const API = {
     let url = this.base + path;
     const p = Object.assign({}, params);
 
-    // 自动为数据面请求附加选中的域过滤
-    const isSystemPath = /^\/(login|config|domains|health|livez|readyz)/.test(path);
+    // 自动为数据面请求附加选中的域过滤 (全局系统与运维接口不受域过滤影响)
+    const isSystemPath = /^\/(login|config|domains|health|livez|readyz|evolve|federation)/.test(path);
     if (!isSystemPath) {
       const dom = this.parseDomain();
       if (dom) {
@@ -75,8 +75,8 @@ const API = {
   async post(path, payload) {
     const body = Object.assign({}, payload);
 
-    // 自动为数据面 POST 请求附加选中的域过滤
-    const isSystemPath = /^\/(login|config|domains|health|livez|readyz)/.test(path);
+    // 自动为数据面 POST 请求附加选中的域过滤 (全局系统与运维接口不受域过滤影响)
+    const isSystemPath = /^\/(login|config|domains|health|livez|readyz|evolve|federation)/.test(path);
     if (!isSystemPath) {
       const dom = this.parseDomain();
       if (dom) {

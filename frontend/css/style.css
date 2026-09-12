@@ -1356,3 +1356,57 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   .slogan-en { right: 20px; }
   .slogan-cn { left: 20px; }
 }
+
+/* ---------- 联邦成员按域分组样式 ---------- */
+.fed-groups-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.fed-group {
+  border: 1px solid var(--gray-line);
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.45);
+  transition: all 0.25s var(--ease);
+}
+.fed-group--active {
+  border-color: var(--blue-line);
+  background: rgba(235, 243, 253, 0.55);
+  box-shadow: 0 2px 10px rgba(31, 78, 121, 0.08);
+}
+.fed-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--gray-line);
+}
+.fed-group-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fed-group-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fed-group-count {
+  font-size: 11px;
+  color: var(--gray-soft);
+  font-weight: 600;
+}
+.fed-curr-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--blue);
+  border-radius: 999px;
+  padding: 1px 8px;
+  letter-spacing: 0.02em;
+}
