@@ -1248,7 +1248,7 @@ async function renderSettings(body) {
   try {
     [health, agents, config] = await Promise.all([
       API.get('/health'),
-      API.get('/federation/agents').catch(function () { return null; }),
+      API.get('/federation/agents', { caller_agent_id: 'local' }).catch(function () { return null; }),
       API.get('/config').catch(function () { return null; }),
     ]);
   } catch (e) {
