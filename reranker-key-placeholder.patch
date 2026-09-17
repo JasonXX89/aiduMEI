@@ -1,0 +1,35 @@
+diff --git a/ducky/llm_client.py b/ducky/llm_client.py
+index 498f25e..c433dcc 100644
+--- a/ducky/llm_client.py
++++ b/ducky/llm_client.py
+@@ -88,7 +88,7 @@ def get_llm_config() -> dict:
+ 
+ def _resolve_key(api_key: str, purpose: str) -> str:
+     """把占位符解析成真实密钥；已是真实 key 则原样返回。"""
+-    placeholders = {"__SF_KEY__", "__LLM_KEY__", "__EMBED_KEY__"}
++    placeholders = {"__SF_KEY__", "__LLM_KEY__", "__EMBED_KEY__", "__RERANKER_KEY__"}
+     if api_key and api_key not in placeholders:
+         return api_key
+ 
+diff --git a/ducky/mem0_runtime.py b/ducky/mem0_runtime.py
+index d994a6e..6183a40 100644
+--- a/ducky/mem0_runtime.py
++++ b/ducky/mem0_runtime.py
+@@ -307,7 +307,7 @@ def _load_rerank_config() -> dict:
+             cfg["model"] = rc.get("model", "")
+             cfg["base_url"] = rc.get("openai_base_url", "")
+             api_key = rc.get("api_key", "")
+-            if api_key == "__SF_KEY__" or not api_key:
++            if api_key in ("__SF_KEY__", "__RERANKER_KEY__") or not api_key:
+                 kp = os.path.join(BASE_DIR, ".sf_key")
+                 if os.path.exists(kp):
+                     with open(kp) as fk:
+@@ -510,7 +510,7 @@ def _resolve_api_keys(cfg: dict) -> dict:
+             rerank_cfg["config"]["api_key"] = env_rerank
+         else:
+             rk = rerank_cfg["config"].get("api_key", "")
+-            if rk == "__SF_KEY__" or not rk:
++            if rk in ("__SF_KEY__", "__RERANKER_KEY__") or not rk:
+                 kp = os.path.join(base, ".sf_key")
+                 if os.path.exists(kp):
+                     with open(kp) as f:

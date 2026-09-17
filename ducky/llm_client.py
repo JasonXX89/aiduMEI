@@ -88,7 +88,7 @@ def get_llm_config() -> dict:
 
 def _resolve_key(api_key: str, purpose: str) -> str:
     """把占位符解析成真实密钥；已是真实 key 则原样返回。"""
-    placeholders = {"__SF_KEY__", "__LLM_KEY__", "__EMBED_KEY__"}
+    placeholders = {"__SF_KEY__", "__LLM_KEY__", "__EMBED_KEY__", "__RERANKER_KEY__"}
     if api_key and api_key not in placeholders:
         return api_key
 
