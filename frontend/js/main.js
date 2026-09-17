@@ -142,7 +142,21 @@ async function openPanel(key) {
 
   // title: EN (gray) then CN (blue)
   panelEn.textContent = def.en;
-  panelTitle.textContent = def.cn;
+  // 设定面板(settings)与成真面板(evolve)属于系统级全局运维监控，不绑定单个域；数据面板(vault/pulse/map/recall)展示当前域
+  let domSuffix = '';
+  if (key !== 'settings' && key !== 'evolve') {
+    const activeDom = API.getActiveDomain();
+    if (activeDom && activeDom !== 'all') {
+      const domUser = activeDom.split(':')[0];
+      let icon = '⚙️';
+      if (domUser === 'hermes') icon = '🐎';
+      else if (domUser === 'openclaw') icon = '🦞';
+      domSuffix = ' · ' + icon + ' ' + domUser;
+    } else if (activeDom === 'all') {
+      domSuffix = ' · 🌐 全部';
+    }
+  }
+  panelTitle.textContent = def.cn + domSuffix;
 
   // footer: the hover tooltip text (EN + CN)
   var btn = document.getElementById(def.hex);
@@ -247,9 +261,57 @@ document.addEventListener('keydown', function (e) {
 })();
 
 /* ---------------------------------------------------------------------------
-   boot
+   boot & domain switcher
    --------------------------------------------------------------------------- */
 createHexBackground('#hexBg', 666, BRAND_COLORS, 0.3);
+
+async function initDomainSwitcher() {
+  const sel = document.getElementById('domainSelect');
+  if (!sel) return;
+
+  try {
+    const res = await API.get('/domains');
+    const domains = (res && res.domains) || [];
+    if (domains.length > 0) {
+      sel.innerHTML = '';
+      // 默认提供全部域选项
+      const optAll = document.createElement('option');
+      optAll.value = 'all';
+      optAll.textContent = '🌐 全部 / All';
+      sel.appendChild(optAll);
+
+      domains.forEach(function (d) {
+        const opt = document.createElement('option');
+        const key = d.user_id + ':' + (d.bank_id || 'default');
+        opt.value = key;
+
+        let icon = '⚙️';
+        if (d.user_id === 'hermes') icon = '🐎';
+        else if (d.user_id === 'openclaw') icon = '🦞';
+        else if (d.user_id === 'default') icon = '📌';
+
+        opt.textContent = icon + ' ' + d.user_id + (d.bank_id !== 'default' ? ' (' + d.bank_id + ')' : '');
+        sel.appendChild(opt);
+      });
+    }
+  } catch (e) {
+    // 降级使用静态预设
+  }
+
+  // 恢复之前的选中状态
+  const active = API.getActiveDomain();
+  if (active) {
+    sel.value = active;
+  }
+
+  sel.addEventListener('change', function () {
+    API.setActiveDomain(sel.value);
+    // 如果当前有打开的面板，重新渲染当前面板以展示新域数据
+    if (openKey && PANELS[openKey]) {
+      openPanel(openKey);
+    }
+  });
+}
 
 // Kick off health check to get deployed version
 (async function boot() {
@@ -260,6 +322,7 @@ createHexBackground('#hexBg', 666, BRAND_COLORS, 0.3);
     setDeployedVersion('—');
   }
   if (ENABLE_UPDATE_CHECK) checkLatestVersion();
+  await initDomainSwitcher();
 })();
 
 // deep link

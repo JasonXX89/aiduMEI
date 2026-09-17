@@ -576,6 +576,12 @@ async function deleteMemory(id, card) {
 
 function recordRow(r) {
   const bits = [];
+  if (r.userId) {
+    let icon = '⚙️';
+    if (r.userId === 'hermes') icon = '🐎';
+    else if (r.userId === 'openclaw') icon = '🦞';
+    bits.push('<span class="chip-user" style="font-weight:700;color:var(--blue);">' + icon + ' ' + esc(r.userId) + '</span>');
+  }
   if (r.category) bits.push('<span class="cat">' + esc(r.category) + '</span>');
   if (r.source) bits.push('<span class="src hexcn">' + esc(r.source) + '</span>');
   if (r.rerank != null) bits.push('重排 ' + r.rerank.toFixed(3));
@@ -596,6 +602,12 @@ function recordRow(r) {
 
 function factRow(f) {
   const bits = [];
+  if (f.userId) {
+    let icon = '⚙️';
+    if (f.userId === 'hermes') icon = '🐎';
+    else if (f.userId === 'openclaw') icon = '🦞';
+    bits.push('<span class="chip-user" style="font-weight:700;color:var(--blue);">' + icon + ' ' + esc(f.userId) + '</span>');
+  }
   if (f.category) bits.push('<span class="cat">' + esc(f.category) + '</span>');
   if (f.source) bits.push('<span class="src hexcn">' + esc(f.source) + '</span>');
   if (f.trust != null) bits.push('信任 ' + f.trust.toFixed(2));
@@ -1067,27 +1079,8 @@ async function renderEvolve(body) {
         : '<div class="hint">目前没有待结晶的模式 / No crystal candidates. 结晶是把反复出现的事实压成"技能"，数据量上来之后才会有。</div>') +
     '</div>' +
 
-    '<div class="sec">' + secHead('记忆档案', 'DOSSIER', '一键导出为 Markdown · v21') +
-      '<div class="hint">按本部署默认域导出完整记忆档案：出身分区（亲口/推断/引用/模糊）、未经验证标注、健康总览、演化与进化统计。</div>' +
-      '<div class="param-row"><button class="param-edit" id="dossierBtn">导出记忆档案 / Export dossier</button></div>' +
-    '</div>' +
-
     '<div class="sec" id="evGov">' + secHead('治理候选队列', 'GOVERNANCE', '第二双眼睛 · 未过审即降权') + loading('候选队列') + '</div>' +
     '<div class="sec" id="evOpinion">' + secHead('信念层', 'BELIEF', '事实是「是什么」·信念是「我多确定」') + '</div>';
-
-  // 记忆档案导出：先取域提示，再开下载（same-origin cookie 随浏览器导航自动携带）
-  const dBtn = body.querySelector('#dossierBtn');
-  if (dBtn) dBtn.onclick = async function () {
-    dBtn.disabled = true;
-    try {
-      const hint = await API.get('/dossier/scope-hint');
-      window.open('/dossier?user_id=' + encodeURIComponent(hint.user_id) +
-        '&bank_id=' + encodeURIComponent(hint.bank_id) + '&download=1', '_blank');
-    } catch (e) {
-      dBtn.textContent = '导出失败：' + (e.message || e);
-    }
-    dBtn.disabled = false;
-  };
 
   // B1 治理候选队列 + 人审入口
   await loadGovernance(body.querySelector('#evGov'));
@@ -1255,7 +1248,7 @@ async function renderSettings(body) {
   try {
     [health, agents, config] = await Promise.all([
       API.get('/health'),
-      API.get('/federation/agents').catch(function () { return null; }),
+      API.get('/federation/agents', { caller_agent_id: 'local' }).catch(function () { return null; }),
       API.get('/config').catch(function () { return null; }),
     ]);
   } catch (e) {
@@ -1300,20 +1293,61 @@ async function renderSettings(body) {
     '</div>' +
 
     // ---- federation ----
-    '<div class="sec">' + secHead('联邦成员', 'FEDERATION', agentList.length + ' 个 Agent') +
-      (agentList.length
-        ? '<div class="recs">' + agentList.map(function (a) {
-            const on = a.available && !a.stale;
-            return '<div class="rec"><div class="rtext"><b>' + esc(a.display_name || a.agent_id) + '</b>' +
-              (a.description ? ' — ' + esc(a.description) : '') + '</div>' +
-              '<div class="rmeta">' +
-                '<span class="cat">' + (on ? '在线 Online' : '静默 Idle') + '</span>' +
-                '<span class="dot-sep">·</span>' + fmtInt(a.fact_count || 0) + ' 条事实 / facts' +
-                '<span class="dot-sep">·</span>心跳 ' + fmtWhen(a.last_seen_at) +
-                '<span class="dot-sep">·</span>profile ' + esc(a.profile || '—') +
-              '</div></div>';
-          }).join('') + '</div>'
-        : '<div class="hint">读不到联邦成员 / No federation agents.</div>') +
+    '<div class="sec">' + secHead('联邦成员', 'FEDERATION', agentList.length + ' 个 Agent · 按域分类') +
+      (function () {
+        if (!agentList.length) return '<div class="hint">读不到联邦成员 / No federation agents.</div>';
+
+        const currentDom = API.getActiveDomain();
+        const currentUserId = currentDom && currentDom !== 'all' ? currentDom.split(':')[0] : null;
+
+        const groupOrder = ['hermes', 'openclaw', 'default'];
+        const groups = {};
+        agentList.forEach(function (a) {
+          const prof = a.profile || 'default';
+          if (!groups[prof]) groups[prof] = [];
+          groups[prof].push(a);
+        });
+
+        const groupKeys = Object.keys(groups).sort(function (x, y) {
+          const ix = groupOrder.indexOf(x);
+          const iy = groupOrder.indexOf(y);
+          if (ix !== -1 && iy !== -1) return ix - iy;
+          if (ix !== -1) return -1;
+          if (iy !== -1) return 1;
+          return x.localeCompare(y);
+        });
+
+        return '<div class="fed-groups-wrap">' + groupKeys.map(function (prof) {
+          const list = groups[prof];
+          const isCurrent = currentUserId === prof;
+          let icon = '⚙️';
+          let nameCn = prof;
+          if (prof === 'hermes') { icon = '🐎'; nameCn = 'Hermes 域 (Emma / Lisa)'; }
+          else if (prof === 'openclaw') { icon = '🦞'; nameCn = 'OpenClaw 域 (小希等六人组)'; }
+          else if (prof === 'default') { icon = '📌'; nameCn = '系统默认域 (Local/Default)'; }
+
+          return '<div class="fed-group' + (isCurrent ? ' fed-group--active' : '') + '">' +
+            '<div class="fed-group-header">' +
+              '<span class="fed-group-title">' + icon + ' ' + esc(nameCn) + '</span>' +
+              '<span class="fed-group-meta">' +
+                '<span class="fed-group-count">' + list.length + ' 个成员</span>' +
+                (isCurrent ? '<span class="fed-curr-badge">当前域 Selected</span>' : '') +
+              '</span>' +
+            '</div>' +
+            '<div class="recs">' + list.map(function (a) {
+              const on = a.available && !a.stale;
+              return '<div class="rec"><div class="rtext"><b>' + esc(a.display_name || a.agent_id) + '</b>' +
+                (a.description ? ' — ' + esc(a.description) : '') + '</div>' +
+                '<div class="rmeta">' +
+                  '<span class="cat">' + (on ? '在线 Online' : '静默 Idle') + '</span>' +
+                  '<span class="dot-sep">·</span>' + fmtInt(a.fact_count || 0) + ' 条事实 / facts' +
+                  '<span class="dot-sep">·</span>心跳 ' + fmtWhen(a.last_seen_at) +
+                  '<span class="dot-sep">·</span>id ' + esc(a.agent_id) +
+                '</div></div>';
+            }).join('') + '</div>' +
+          '</div>';
+        }).join('') + '</div>';
+      })() +
     '</div>' +
 
     // ---- security / change password ----
