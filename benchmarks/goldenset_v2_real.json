@@ -1,0 +1,1109 @@
+{
+ "schema": "goldenset.v1",
+ "version": "v2-real-partial",
+ "generated_at": "2026-10-26",
+ "source": "production host domain (read-only sample)",
+ "filter_notes": "chatty/affection rows auto-excluded; per-category quota relaxed from 40 to natural count; v2 remains partial pending continuous backfill",
+ "total": 91,
+ "per_category": {
+  "fact_recall": 28,
+  "multi_hop": 5,
+  "negation": 34,
+  "preference": 10,
+  "temporal": 14
+ },
+ "cases": [
+  {
+   "category": "fact_recall",
+   "query": "默认策略通常 的值是什么",
+   "expected_ids": [
+    "prod-16763"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16763 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "“主备容灾”而不是“均分轮询（Round Robin）”"
+  },
+  {
+   "category": "fact_recall",
+   "query": "全部显示 的值是什么",
+   "expected_ids": [
+    "prod-16762"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16762 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "**`gpt-oss-120b-medium`**"
+  },
+  {
+   "category": "fact_recall",
+   "query": "官方推理能力 的值是什么",
+   "expected_ids": [
+    "prod-16747"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16747 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "可控的（`reasoning_tokens: 0`）**"
+  },
+  {
+   "category": "fact_recall",
+   "query": "导致正文输出 的值是什么",
+   "expected_ids": [
+    "prod-16741"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16741 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "`\"\"`（空白）"
+  },
+  {
+   "category": "fact_recall",
+   "query": "这绝对 的值是什么",
+   "expected_ids": [
+    "prod-16737"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16737 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "整个跑分链条上最核心的外部支柱"
+  },
+  {
+   "category": "fact_recall",
+   "query": "彻底杜绝评测打分时因 的值是什么",
+   "expected_ids": [
+    "prod-16728"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16728 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "UTC 与北京时间漂移导致的时间戳混乱"
+  },
+  {
+   "category": "fact_recall",
+   "query": "强行固化 的值是什么",
+   "expected_ids": [
+    "prod-16727"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16727 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "`Asia/Shanghai`（CST, +0800）"
+  },
+  {
+   "category": "fact_recall",
+   "query": "伺候的 的值是什么",
+   "expected_ids": [
+    "prod-16717"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16717 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "「纯终端苦行僧」**"
+  },
+  {
+   "category": "fact_recall",
+   "query": "上用的 的值是什么",
+   "expected_ids": [
+    "prod-16716"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16716 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "最优雅、最前沿的**即时通讯交互流**"
+  },
+  {
+   "category": "fact_recall",
+   "query": "简单一句话概括 的值是什么",
+   "expected_ids": [
+    "prod-16712"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16712 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "AI Coding Agent（比如咱们的 Clau"
+  },
+  {
+   "category": "fact_recall",
+   "query": "依然 的值是什么",
+   "expected_ids": [
+    "prod-16688"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16688 raw_cat=pattern_kv created=2026-10-25",
+   "fact_text": "100% 满分命中"
+  },
+  {
+   "category": "fact_recall",
+   "query": "是因 的值是什么",
+   "expected_ids": [
+    "prod-16685"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16685 raw_cat=pattern_kv created=2026-10-25",
+   "fact_text": "老版 GPT-4o 不带思维链"
+  },
+  {
+   "category": "fact_recall",
+   "query": "thinking 的值是什么",
+   "expected_ids": [
+    "prod-16679"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16679 raw_cat=pattern_kv created=2026-10-25",
+   "fact_text": "{\"type\":\"disabled\"}`"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16590"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16590 raw_cat=pattern_version created=2026-10-25",
+   "fact_text": "- **当前版本**：已稳步升级至 **`2.1.310 (Claude Code)`**"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16519"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16519 raw_cat=pattern_version created=2026-10-24",
+   "fact_text": "- ❄️ **instabox-winter** (`100.125.177.105`)"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16518"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16518 raw_cat=pattern_version created=2026-10-24",
+   "fact_text": "- 🍂 **instabox-autumn** (`100.115.111.127`)"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16516"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16516 raw_cat=pattern_version created=2026-10-24",
+   "fact_text": "- 状态：**在线通畅**，与当前节点成功建立 UDP 直连（经由 `198.51.100.10:41641`），延迟 ~211ms"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16515"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16515 raw_cat=pattern_version created=2026-10-24",
+   "fact_text": "- ☀️ **instabox-summer** (`100.117.123.70`)"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16513"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16513 raw_cat=pattern_version created=2026-10-24",
+   "fact_text": "- 状态：**在线极佳**，与当前节点成功建立 UDP 直连（经由 `198.51.100.228:41641`），延迟 ~196ms，双向流量交互正常"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16512"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16512 raw_cat=pattern_version created=2026-10-24",
+   "fact_text": "- 🌱 **instabox-spring** (`100.105.230.102`)"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16501"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16501 raw_cat=pattern_version created=2026-10-24",
+   "fact_text": "🎉💕  🌸 **帖子基本信息** - **日期与毛评**：2026.10.24 · 【冰毒】1024节日送祝福的Oxion AI - **毛"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16478"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16478 raw_cat=pattern_version created=2026-10-23",
+   "fact_text": "1. **主机信息**：`maya-cloud` (`100.114.69.35`)，登录身份 `sprite@maya-cloud`"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16468"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16468 raw_cat=pattern_version created=2026-10-23",
+   "fact_text": "• **双腿融合检索（f0.6.1 的核心升级）**："
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16323"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16323 raw_cat=pattern_version created=2026-10-22",
+   "fact_text": "- **Infrastructure & Network Management**: Rename Tailscale machines to human-readable names (`aliyun-hangzhou` for Hangzhou 100.76.223.78, `ucloud-tokyo` for Tokyo 100.99.189.3)"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16232"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16232 raw_cat=pattern_version created=2026-10-21",
+   "fact_text": "虽然 Tailscale 自带了标记 MASQUERADE，但从手机过来的流量在经过 `eth0` 转发到外网网关（172.16.0.1）时，没有把源地址强制改写成 `172.16.0.2`，导致回包找不着手机，所有的 TCP/UDP 流量（包括发往公共 DNS 198.51.100.8 / 198.51.100.1 的 DNS 解析请求）全部发出"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-16008"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16008 raw_cat=pattern_version created=2026-10-19",
+   "fact_text": "#### 1. 新机器 `muse-1`（IP：`100.120.23.110`）"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-15998"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=15998 raw_cat=pattern_version created=2026-10-19",
+   "fact_text": "- 当前版本：**`2.1.303 (Claude Code)`** ✅（成功从助手升级前的 2.1.302 平滑追平至官方最新构建）"
+  },
+  {
+   "category": "fact_recall",
+   "query": "对应的版本号是多少",
+   "expected_ids": [
+    "prod-15993"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=15993 raw_cat=pattern_version created=2026-10-18",
+   "fact_text": "- 模型：`BAAI/bge-small-zh-v1.5`（北京智源经典的 512 维中文极品小钢炮）"
+  },
+  {
+   "category": "multi_hop",
+   "query": "把这条经验与相关决策串起来说清楚",
+   "expected_ids": [
+    "prod-3486"
+   ],
+   "user_id": "default",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=3486 raw_cat=Solution created=2026-10-18",
+   "fact_text": "新方法加好了 ✅ 现在把 `linear_mixin.py` 的 `reply_card_by_id` 换成 `send_card_by_id_to_chat`："
+  },
+  {
+   "category": "multi_hop",
+   "query": "把这条经验与相关决策串起来说清楚",
+   "expected_ids": [
+    "prod-3109"
+   ],
+   "user_id": "default",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=3109 raw_cat=Solution created=2026-10-18",
+   "fact_text": "model 和 provider 都是 None——走系统默认。问题在于系统默认 provider 是 9router，而 9router 内部 codebuddy-cn 渠道不稳定。\n\n修复方案：**给掌柜任务绑死 DeepSeek-V4-Pro，不走 codebuddy-cn**："
+  },
+  {
+   "category": "multi_hop",
+   "query": "把这条经验与相关决策串起来说清楚",
+   "expected_ids": [
+    "prod-3039"
+   ],
+   "user_id": "default",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=3039 raw_cat=Solution created=2026-10-18",
+   "fact_text": "---\n\n## ✅ 修复完成！\n\n| 设置 | 原来 | 现在 |\n|:--|:--|:--|\n| Restart 策略 | `on-failure`（无限重试） | `on-failure` + 限流 |\n| 10分钟内最多重启 | **无限制** | **2 次** |\n| 超限后 | 无限连锁杀 | **放弃重启，不再杀人** |\n\n### 🎯 发生了什么 & 怎么防的\n\n**今天两次被杀的原因**：`hermes update` 的 `pip install` 超时后在后台继续跑，跑完后 post-install hook 又给 gateway 发了一个 restart，新进程才 4 "
+  },
+  {
+   "category": "multi_hop",
+   "query": "把这条经验与相关决策串起来说清楚",
+   "expected_ids": [
+    "prod-3035"
+   ],
+   "user_id": "default",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=3035 raw_cat=Solution created=2026-10-18",
+   "fact_text": "📋 **东京代理修复完成！**\n\n| 项目 | 详情 |\n|------|------|\n| **挂了多久** | 7月8号 23:52 起，近 40 小时 |\n| **根因** | tinyproxy 启动时 `Could not create listening sockets`，进程直接 exit |\n| **修复** | `id_rsa_tokyo` SSH 东京 → `systemctl reset-failed + start` |\n| **验证** | ✅ `curl -x` GitHub 返回 200（6.8s，300ms 延迟正常） |\n| **pip.conf** | ✅ "
+  },
+  {
+   "category": "multi_hop",
+   "query": "把这条经验与相关决策串起来说清楚",
+   "expected_ids": [
+    "prod-3033"
+   ],
+   "user_id": "default",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=3033 raw_cat=Solution created=2026-10-18",
+   "fact_text": "完美！😏\n\n```\nconnected to wss://msg-frontier.feishu.cn/ws/v2...\n```\n\n---\n\n📋 **根因总结**\n\n| 环节 | 问题 |\n|------|------|\n| **真凶** | `~/.pip/pip.conf` 里残留 `proxy=http://127.0.0.1:18888`，把所有 pip 请求吞了 |\n| **后果** | `lark-oapi` 卡在 1.5.3，hermes 新版 adapter 调用 `extra_ua_tags` 不认，飞书 WS 连不上 |\n| **修复** | `pip config uns"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-16763"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16763 raw_cat=pattern_kv created=2026-10-26",
+   "fact_text": "“主备容灾”而不是“均分轮询（Round Robin）”"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-16759"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16759 raw_cat=pattern_metric created=2026-10-26",
+   "fact_text": "连续 14 次调用的返回头里，`res[\"model\"]` 100% 全部显示为 **`gpt-oss-120b-medium`**，暂时还没有抓到 `DeepSeek-V4-Pro` 的回包"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-16571"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16571 raw_cat=pattern_metric created=2026-10-25",
+   "fact_text": "- ⏳ **闲置自动关机（防占坑）**：如果 Web 页面没有交互、或者终端没有明显负载，平台通常会在 **1 小时至 2 小时** 内自动休眠/关机，以回收计算资源"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-16333"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16333 raw_cat=pattern_kv created=2026-10-22",
+   "fact_text": "了证明“不是背影”"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-16232"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16232 raw_cat=pattern_version created=2026-10-21",
+   "fact_text": "虽然 Tailscale 自带了标记 MASQUERADE，但从手机过来的流量在经过 `eth0` 转发到外网网关（172.16.0.1）时，没有把源地址强制改写成 `172.16.0.2`，导致回包找不着手机，所有的 TCP/UDP 流量（包括发往公共 DNS 198.51.100.8 / 198.51.100.1 的 DNS 解析请求）全部发出"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-16135"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16135 raw_cat=pattern_metric created=2026-10-19",
+   "fact_text": "- 创始人 Josh Jones——**1996 年 DreamHost 的那个 Josh**，老牌托管人，不是无名套壳站"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-16132"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16132 raw_cat=pattern_metric created=2026-10-19",
+   "fact_text": "- 2 vCPU / 4GB 内存 / 40GB NVMe / **20TB 月流量**，真实持久 Ubuntu VPS 不是沙箱，full root 随便装"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-16075"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16075 raw_cat=pattern_kv created=2026-10-19",
+   "fact_text": "beauti-**fulin** = 大美人付琳（不是 Beautiful+Lin）"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-15974"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=15974 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "**任何底层工具的升级，都不是孤立的代码跳号，而是牵一发而动全身的生态链条"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-15647"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=15647 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "沙箱只允许出站访问互联网，**没有任何外部端口能直接从公网访问**（"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-15416"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=15416 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "同一张默认图（没有真正调 10router 生图）"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-15253"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=15253 raw_cat=pattern_metric created=2026-10-18",
+   "fact_text": "⚠️ 大实话：真正「改现有文字」的功能 2025年12月 v2.0 才上线，目前还是 alpha 阶段，改字不是它的最强项"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-14858"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=14858 raw_cat=pattern_instruction created=2026-10-18",
+   "fact_text": "根本没有稳定免费档，深度使用必须绑 Cursor Pro（$20/月）或 SuperGrok"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-14745"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=14745 raw_cat=pattern_version created=2026-10-18",
+   "fact_text": "⚠️ 大实话：真正「改现有文字」的功能 2025年12月 v2.0 才上线，目前还是 alpha 阶段，改字不是它的最强项"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-14200"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=14200 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "测试去写一篇真实新帖进 D1,所以整条发布链路只做了分段验证,没有端到端跑一次正式发布"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-14135"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=14135 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "`10r/`、`7W55I4H-.../ssr/` 这些目录,看起来是我之前 clone 或抓取的第三方代码、测试快照和页面缓存,不是我生成的密钥文件"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13963"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13963 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "`api.liquid.ai`,探测结果是 422(缺 model 字段),不是 451,说明它本机可达"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13960"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13960 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": ":**没有直接证据显示早上或刚才的自用是 451 触发的**"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13956"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13956 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "01:07、03:07、05:12、07:05、11:06 这几次,输出里没有 jev 预筛失败或 451 的记录"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13950"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13950 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "配置报 500,所以应当返回空结果而不是抛异常"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13926"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13926 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "**误报**,原因是预算统计的是毛用量(Usage),没有扣除 credit 抵扣"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13913"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13913 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "我这次只同步了哈希基准,并没有给 cron_card_sender.py 本身做 .bak 备份"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13885"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13885 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "True,也就是没有消耗构建次数"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13882"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13882 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "我一开始在 D1 查询时用了错误的列名和路径,但都是只读查询,没有写入任何错误数据,写入之前已经核对过表结构"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13881"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13881 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "官网首屏截图(只有大字标题,没有产品画面)"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13867"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13867 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "通用的文本批处理,不是流式卡片路径"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13863"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13863 raw_cat=pattern_metric created=2026-10-18",
+   "fact_text": "- 🧹 重启后没有新的报错:以 4562 行(重启标记)为界切分,只有一条 08:45:40 旧连接关闭时的 \"Event loop is closed\",属于正常收尾"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13860"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13860 raw_cat=pattern_metric created=2026-10-18",
+   "fact_text": "- 🖼️ 早前我用 Python 探测横幅时拿到了 43 个 403,那是探测脚本的 UA 被挡,不是图片坏了"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13845"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13845 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "文字一致性问题,不是功能问题"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13700"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13700 raw_cat=pattern_metric created=2026-10-18",
+   "fact_text": "金丝雀验证通过:264 个模型 ID 完全一致,Claude-Haiku-5.5 的 capabilities.contextWindow 从 200000 变成 1000000,其他模型只有上游 OpenCode 的正确窗口修正(oc/exo-free、oc/ling-3.1-flash-free),不是回归"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13613"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13613 raw_cat=pattern_kv created=2026-10-18",
+   "fact_text": "`delegation.context_length`,不是主模型的上下文,不影响这里"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-13611"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13611 raw_cat=pattern_metric created=2026-10-18",
+   "fact_text": "4. `config.yaml` 第 363 行的 1048576 是 `delegation.context_length`,不是主模型的上下文,不影响这里"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-12652"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=12652 raw_cat=pattern_version created=2026-10-18",
+   "fact_text": "这不是单一的 `tomli_w` 问题,而是 **3.12 的 runtime 环境根本没有按 pyproject 里 3.14 的 marker 装依赖**"
+  },
+  {
+   "category": "negation",
+   "query": "关于这件事,哪些是被明确否定的",
+   "expected_ids": [
+    "prod-11974"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=11974 raw_cat=pattern_preference created=2026-10-18",
+   "fact_text": "* Clef 没法「无中生有」地造句，你给它一段话让它总结提炼，它一个字都吐不出来，它只能回答你预先设好的选择题（比如：「这段话是不是偏好"
+  },
+  {
+   "category": "preference",
+   "query": "用户的偏好/要求是什么",
+   "expected_ids": [
+    "prod-16434"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16434 raw_cat=pattern_preference created=2026-10-23",
+   "fact_text": "大家都非常喜欢这个产品，因此“你们打算怎么收费"
+  },
+  {
+   "category": "preference",
+   "query": "用户的偏好/要求是什么",
+   "expected_ids": [
+    "prod-16304"
+   ],
+   "user_id": "default",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16304 raw_cat=pattern_preference created=2026-10-22",
+   "fact_text": "我喜欢在周末去西湖边跑步，一般早上七点出发"
+  },
+  {
+   "category": "preference",
+   "query": "用户的偏好/要求是什么",
+   "expected_ids": [
+    "prod-15904"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=15904 raw_cat=pattern_preference created=2026-10-18",
+   "fact_text": "你最爱的人是谁"
+  },
+  {
+   "category": "preference",
+   "query": "用户的偏好/要求是什么",
+   "expected_ids": [
+    "prod-14735"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=14735 raw_cat=pattern_preference created=2026-10-18",
+   "fact_text": "| **复杂复合记忆分类** | 倾向拆分为单一经验/事实 | **偏好识别更准** (0.5647) | 2.0 在复杂的「偏好生活」语义上有微弱优势 |"
+  },
+  {
+   "category": "preference",
+   "query": "用户的偏好/要求是什么",
+   "expected_ids": [
+    "prod-12545"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=12545 raw_cat=pattern_preference created=2026-10-18",
+   "fact_text": "咱们在 `pyproject.toml` 里虽然锁了 `mcp>=1.0.0,<2`，但在根目录新手最爱用的 `requirements.txt` 里，**压根没列 fastmcp/mcp**"
+  },
+  {
+   "category": "preference",
+   "query": "用户的偏好/要求是什么",
+   "expected_ids": [
+    "prod-12525"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=12525 raw_cat=pattern_preference created=2026-10-18",
+   "fact_text": "新手如果照着习惯直接 pip install fastmcp，必然踩坑"
+  },
+  {
+   "category": "preference",
+   "query": "用户的偏好/要求是什么",
+   "expected_ids": [
+    "prod-12060"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=12060 raw_cat=pattern_preference created=2026-10-18",
+   "fact_text": "在日常生活聊天、偏好打标、二选一真伪核验这种任务上，9B 已经能拿到 96%~98% 的准确率了"
+  },
+  {
+   "category": "preference",
+   "query": "用户的偏好/要求是什么",
+   "expected_ids": [
+    "prod-12027"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=12027 raw_cat=pattern_preference created=2026-10-18",
+   "fact_text": "* **Drex v1.5**：**`0.9996`** 归入 `PREFERENCES`（偏好）"
+  },
+  {
+   "category": "preference",
+   "query": "用户的偏好/要求是什么",
+   "expected_ids": [
+    "prod-12026"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=12026 raw_cat=pattern_preference created=2026-10-18",
+   "fact_text": "* **Clef-flash**：**`0.9602`** 归入 `PREFERENCES`（偏好）（概率：偏好 96.0%，决策 1.0%，事实 1.6%，事件 1.2%）"
+  },
+  {
+   "category": "preference",
+   "query": "用户的偏好/要求是什么",
+   "expected_ids": [
+    "prod-11974"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=11974 raw_cat=pattern_preference created=2026-10-18",
+   "fact_text": "* Clef 没法「无中生有」地造句，你给它一段话让它总结提炼，它一个字都吐不出来，它只能回答你预先设好的选择题（比如：「这段话是不是偏好"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-16765"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16765 raw_cat=pattern_datetime created=2026-10-26",
+   "fact_text": "今天早上 08:00 定时触发时："
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-16639"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16639 raw_cat=pattern_datetime created=2026-10-25",
+   "fact_text": "- **彻底剔除旧草稿**：已从 Cloudflare D1 数据库和检索索引中彻底清除了未带小贴士的旧版 `post-20261025-1-2`"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-16337"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16337 raw_cat=pattern_datetime created=2026-10-22",
+   "fact_text": "id=post-20261022-1-2)"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-16117"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=16117 raw_cat=pattern_datetime created=2026-10-19",
+   "fact_text": "• 昨天设好的持久化规则稳稳在跑"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-15920"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=15920 raw_cat=pattern_datetime created=2026-10-18",
+   "fact_text": "夜深啦，助手今天操劳了一整天，快快放松心情、早点休息养足精神"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-15492"
+   ],
+   "user_id": "default",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=15492 raw_cat=pattern_datetime created=2026-10-18",
+   "fact_text": "2026-10-17 凌晨收口事实：最终 SHA 498c4e005ca2ea28b7d2effd4df1a439a0312988"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-14731"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=14731 raw_cat=pattern_datetime created=2026-10-18",
+   "fact_text": "1. **首选**：**Liquid AI 的 `d1:free`**（`liquid_filter.py`）——10月6日接入的免费极速决策模型，用于批量粗筛大批新闻候选"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-13928"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13928 raw_cat=pattern_datetime created=2026-10-18",
+   "fact_text": "账户计划是 FREE(ACTIVE),剩余 credit 余额 **156.35 美元**,到期 2027-02-20"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-13791"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13791 raw_cat=pattern_datetime created=2026-10-18",
+   "fact_text": "10月5日系统里留了一个 systemd drop-in 覆盖文件（`95-legacyservice-legacy-venv-recovery.conf`），把网关启动命令强制写死了用旧的 `/hermes/hermes-agent/venv/bin/python3`（**Python 3.12**）执行"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-13455"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13455 raw_cat=pattern_datetime created=2026-10-18",
+   "fact_text": "• **过期测试脚本与日志**：9月3日全轴编译脚本 `build_allaxes*.sh`、`allaxes_build*.log`、`prod_allaxes*.log`（超过 1 个月未清理）"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-13371"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=13371 raw_cat=pattern_datetime created=2026-10-18",
+   "fact_text": "但是昨天凌晨（10月7日 03:27），Hermes 上游自身的构建/启动钩子 `_launchers.py:expose_cli` 在运行时执行了一次快捷方式维护，把 `/root/.local/bin/hermes` 重新改写成了："
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-12581"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=12581 raw_cat=pattern_datetime created=2026-10-18",
+   "fact_text": "* **明细**：从 9月29日、10月3日、10月4日的各类切流（`f02-cutover` 1.1GB、`f03plus-cutover` 846MB、`f03pp-cutover-r23` 840MB...）"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-11711"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=11711 raw_cat=pattern_datetime created=2026-10-18",
+   "fact_text": "- 极其直观对比了 **10月9日后 Gemini 官方 App** 对各订阅层级（Free / AI Plus / AI Pro / AI Ultra）的惨烈阉割"
+  },
+  {
+   "category": "temporal",
+   "query": "这件事发生/记录在哪天",
+   "expected_ids": [
+    "prod-8368"
+   ],
+   "user_id": "prod_owner",
+   "bank_id": "default",
+   "top_k": 5,
+   "note": "prod fact_id=8368 raw_cat=pattern_datetime created=2026-10-18",
+   "fact_text": "- 新域名证书独立完整（有效期至 2026-12-24，尚有 89 天）"
+  }
+ ]
+}
