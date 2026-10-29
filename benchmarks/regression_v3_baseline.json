@@ -1,0 +1,45 @@
+{
+ "schema": "regression.v3.baseline",
+ "cases_version": "v3.0-public-synthetic",
+ "per_category": {
+  "fact_recall": {
+   "pass": 50,
+   "n": 51,
+   "score": 0.9804
+  },
+  "update": {
+   "pass": 25,
+   "n": 25,
+   "score": 1.0
+  },
+  "delete": {
+   "pass": 25,
+   "n": 25,
+   "score": 1.0
+  },
+  "temporal": {
+   "pass": 25,
+   "n": 25,
+   "score": 1.0
+  },
+  "abstain": {
+   "pass": 23,
+   "n": 25,
+   "score": 0.92
+  },
+  "cc_replay": {
+   "pass": 16,
+   "n": 20,
+   "score": 0.8
+  }
+ },
+ "total": {
+  "pass": 164,
+  "n": 171,
+  "score": 0.9591
+ },
+ "mode": "local-inprocess(hash-embed, verdict_threshold=0.46)",
+ "recorded_at": "2026-10-29 CST",
+ "code_base": "f0.7 (0.7.0), mem0 kernel + public synthetic set",
+ "note": "公开虚构集基线(benchmarks/build_public_regression.py 生成,种子固定)。维护者私有真实集的分数不随公开仓分发,两者不可互比。"
+}
