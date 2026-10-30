@@ -51,10 +51,10 @@ from tools.registry import tool_error
 logger = logging.getLogger(__name__)
 
 DEFAULT_URL = "http://127.0.0.1:8767"
-_CONNECT_TIMEOUT = 2.0       # 探活：不能让 is_available 拖慢启动
+_CONNECT_TIMEOUT = 5.0       # 探活：跨境 Tailscale 专网留足 5s 裕量，防偶发抖动误报
 _QUERY_TIMEOUT = 6.0         # 检索：阻塞在 turn 开头，必须短
-_WRITE_TIMEOUT = 20.0        # 工具和轻量镜像写入
-_BACKGROUND_WRITE_TIMEOUT = 45.0  # /add 同步抽取可用满服务端 30s LLM 预算
+_WRITE_TIMEOUT = 60.0        # 工具和轻量镜像写入（放宽防假死锁定）
+_BACKGROUND_WRITE_TIMEOUT = 90.0  # /add 同步抽取可用满服务端 30s LLM 预算 + 演化检索
 _DISTILL_TIMEOUT = 45.0      # /session/distill 同样需要 30s LLM 预算和本地余量
 _SHUTDOWN_GRACE_SECONDS = 100.0  # 会话结束 + 萃取 + 精华同步落库的全局收尾上限
 _TURN_RETRY_DELAYS = (0.5, 1.5)  # 会话收尾时重试未确认的幂等写入
@@ -221,6 +221,8 @@ class _Client:
     ) -> Any:
         data = json.dumps(body).encode("utf-8") if body is not None else None
         headers = {"Content-Type": "application/json"} if data else {}
+        headers["X-Caller"] = self.user_id or "hermes"
+        headers["X-Caller-User-Id"] = self.user_id or "hermes"
         if self.api_token:
             headers["Authorization"] = f"Bearer {self.api_token}"
         req = urlrequest.Request(
